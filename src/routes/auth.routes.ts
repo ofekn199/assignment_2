@@ -2,6 +2,7 @@ import { Router } from "express";
 import { register, login } from "../controllers/auth.controller";
 import { authenticate } from "../middlewares/auth.middleware";
 import { refreshAccessToken } from "../controllers/auth.controller";
+import { logout } from "../controllers/auth.controller";
 
 const router = Router();
 
@@ -13,6 +14,9 @@ router.post("/login", login);
 
 // Refresh token route
 router.post("/refresh-token", refreshAccessToken);
+
+// Logout route
+router.post("/logout", logout);
 
 // Protected route for testing authentication
 router.get("/me", authenticate, (req, res) => {
