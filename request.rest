@@ -30,3 +30,12 @@ Authorization: Bearer invalid.token.here
 ### Access protected route with valid token
 GET {{baseUrl}}/auth/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZjJhMTAyNGM3Nzc3YjA1ZTkzMTMiLCJlbWFpbCI6Im9mZWtAdGVzdC5jb20iLCJpYXQiOjE3Njk4MDAxMTEsImV4cCI6MTc2OTgwMTAxMX0.Onx46Jcc6zhp3hqc4uA8A_OvEeMJr_nQLom_Lz7p-II
+
+
+### Refresh access token
+POST {{baseUrl}}/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "PASTE_REFRESH_TOKEN_HERE"
+}
