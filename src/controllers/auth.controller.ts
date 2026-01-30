@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { User } from "../models/user.model";
 import { generateAccessToken } from "../utils/jwt";
+import { RefreshToken } from "../models/refreshToken.model";
+import { generateRefreshToken } from "../utils/jwt";
 
 // Register a new user
 export const register = async (req: Request, res: Response) => {
@@ -71,10 +73,21 @@ export const login = async (req: Request, res: Response) => {
       userId: user._id.toString(),
       email: user.email,
     });
+    // Create refresh token
+    const refreshTokenValue = generateRefreshToken();
+
+    const refreshToken = new RefreshToken({
+        userId: user._id,
+        token: refreshTokenValue,
+        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+    });
+
+    await refreshToken.save();
 
     // Response
     res.status(200).json({
       accessToken,
+      refreshToken: refreshTokenValue,
       user: {
         id: user._id,
         username: user.username,
