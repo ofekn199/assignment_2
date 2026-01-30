@@ -37,5 +37,50 @@ export const getUserById = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * Update user by id
+ * Only the authenticated user can update himself
+ */
+export const updateUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { username, email, password } = req.body;
+
+    // Validate MongoDB ObjectId
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(400).json({ message: "Invalid user id" });
+    }
+
+    // Authorization: user can update only himself
+    if ((req as any).user.userId !== id) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update allowed fields
+    if (username) user.username = username;
+    if (email) user.email = email;
+    if (password) user.password = password; // hashed by pre-save hook
+
+    await user.save();
+
+    return res.status(200).json({
+      message: "User updated successfully",
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        updatedAt: user.updatedAt,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ message: "Failed to update user" });
+  }
+};
+
 // Force TypeScript to treat this file as a module
 export {};
