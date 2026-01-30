@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import authRoutes from "./routes/auth.routes";
 
 const app = express();
 
@@ -10,7 +11,8 @@ app.get("/health", (_req: Request, res: Response) => {
   res.json({ status: "ok" });
 });
 
-export default app;
+// Auth routes
+app.use("/auth", authRoutes);
 
-// Force TypeScript to treat this file as a module
+export default app;
 export {};
