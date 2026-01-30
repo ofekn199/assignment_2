@@ -52,8 +52,18 @@ Content-Type: application/json
 
 ### Get all users
 GET {{baseUrl}}/users
-Authorization: Bearer Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZjJhMTAyNGM3Nzc3YjA1ZTkzMTMiLCJlbWFpbCI6Im9mZWtAdGVzdC5jb20iLCJpYXQiOjE3Njk4MDUwMDUsImV4cCI6MTc2OTgwNTkwNX0.mpH-rSTFeQh-SU2eu9bLLszWFda4IzqQTrWaIe3txP8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZjJhMTAyNGM3Nzc3YjA1ZTkzMTMiLCJlbWFpbCI6Im9mZWtAdGVzdC5jb20iLCJpYXQiOjE3Njk4MDYxNjAsImV4cCI6MTc2OTgwNzA2MH0.57EFTeiNogt5J_DB1P3V7oZTrdhsj56ibHgryb0m-tM
 
 ### Get user by id
 GET {{baseUrl}}/users/697cf2a1024c7777b05e9313
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZjJhMTAyNGM3Nzc3YjA1ZTkzMTMiLCJlbWFpbCI6Im9mZWtAdGVzdC5jb20iLCJpYXQiOjE3Njk4MDYxNjAsImV4cCI6MTc2OTgwNzA2MH0.57EFTeiNogt5J_DB1P3V7oZTrdhsj56ibHgryb0m-tM
+
+### Update user (self)
+PUT {{baseUrl}}/users/697cf2a1024c7777b05e9313
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZjJhMTAyNGM3Nzc3YjA1ZTkzMTMiLCJlbWFpbCI6Im9mZWtAdGVzdC5jb20iLCJpYXQiOjE3Njk4MDczMDYsImV4cCI6MTc2OTgwODIwNn0.QPGMKJ-SzUgmb5nfkN_1VvU2uSL2s6N7AkHldnfwp3c
+Content-Type: application/json
+
+{
+  "username": "ofek_updated",
+  "email": "ofek_updated@test.com"
+}

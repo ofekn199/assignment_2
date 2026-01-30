@@ -1,14 +1,17 @@
 import { Router } from "express";
-import { getAllUsers, getUserById } from "../controllers/users.controller";
+import { getAllUsers, getUserById , updateUser } from "../controllers/users.controller";
 import { authenticate } from "../middlewares/auth.middleware";
 
 const router = Router();
 
-// Get all users (protected)
+// Get all users
 router.get("/", authenticate, getAllUsers);
 
-// Get user by id (protected)
+// Get user by id 
 router.get("/:id", authenticate, getUserById);
+
+// Update user by id
+router.put("/:id", authenticate, updateUser);
 
 export default router;
 
