@@ -1,17 +1,32 @@
+@baseUrl = http://localhost:3000
+
+
 ### Register new user
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-  "username": "ofek",
+  "username": "ofek1",
+  "email": "ofek1@test.com",
+  "password": "123456"
+}
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
   "email": "ofek@test.com",
   "password": "123456"
 }
 
-### Login existing user
-POST http://localhost:3000/auth/login
-Content-Type: application/json
-{
-  "email": "ofek@test.com",
-    "password": "123456"
-}
+### Access protected route without token
+GET {{baseUrl}}/auth/me
+
+### Access protected route with invalid token
+GET {{baseUrl}}/auth/me
+Authorization: Bearer invalid.token.here
+
+### Access protected route with valid token
+GET {{baseUrl}}/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZjJhMTAyNGM3Nzc3YjA1ZTkzMTMiLCJlbWFpbCI6Im9mZWtAdGVzdC5jb20iLCJpYXQiOjE3Njk4MDAxMTEsImV4cCI6MTc2OTgwMTAxMX0.Onx46Jcc6zhp3hqc4uA8A_OvEeMJr_nQLom_Lz7p-II
