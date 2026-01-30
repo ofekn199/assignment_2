@@ -7,3 +7,11 @@ Content-Type: application/json
   "email": "ofek@test.com",
   "password": "123456"
 }
+
+### Login existing user
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+{
+  "email": "ofek@test.com",
+    "password": "123456"
+}
