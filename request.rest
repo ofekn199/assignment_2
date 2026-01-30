@@ -1,5 +1,7 @@
 @baseUrl = http://localhost:3000
 
+### health check
+GET http://localhost:3000/health
 
 ### Register new user
 POST http://localhost:3000/auth/register
@@ -33,9 +35,25 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZ
 
 
 ### Refresh access token
-POST {{baseUrl}}/auth/refresh
+POST {{baseUrl}}/auth/refresh-token
 Content-Type: application/json
 
 {
-  "refreshToken": "PASTE_REFRESH_TOKEN_HERE"
+  "refreshToken": "e9136088-cd23-4174-9eea-45841fc593a9"
 }
+
+### Logout
+POST {{baseUrl}}/auth/logout
+Content-Type: application/json
+
+{
+  "refreshToken": "47294aa3-4590-4a79-ab57-42b4889ddd18"
+}
+
+### Get all users
+GET {{baseUrl}}/users
+Authorization: Bearer Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZjJhMTAyNGM3Nzc3YjA1ZTkzMTMiLCJlbWFpbCI6Im9mZWtAdGVzdC5jb20iLCJpYXQiOjE3Njk4MDUwMDUsImV4cCI6MTc2OTgwNTkwNX0.mpH-rSTFeQh-SU2eu9bLLszWFda4IzqQTrWaIe3txP8
+
+### Get user by id
+GET {{baseUrl}}/users/697cf2a1024c7777b05e9313
+Authorization: Bearer 
