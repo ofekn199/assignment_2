@@ -82,5 +82,36 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * Delete user by id
+ * Only the authenticated user can delete himself
+ */
+export const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    // Validate MongoDB ObjectId
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(400).json({ message: "Invalid user id" });
+    }
+
+    // Authorization: user can delete only himself
+    if ((req as any).user.userId !== id) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    await User.deleteOne({ _id: id });
+
+    return res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    return res.status(500).json({ message: "Failed to delete user" });
+  }
+};
+
 // Force TypeScript to treat this file as a module
 export {};

@@ -18,7 +18,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "email": "ofek@test.com",
+  "email": "ofek1@test.com",
   "password": "123456"
 }
 
@@ -31,7 +31,7 @@ Authorization: Bearer invalid.token.here
 
 ### Access protected route with valid token
 GET {{baseUrl}}/auth/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZjJhMTAyNGM3Nzc3YjA1ZTkzMTMiLCJlbWFpbCI6Im9mZWtAdGVzdC5jb20iLCJpYXQiOjE3Njk4MDAxMTEsImV4cCI6MTc2OTgwMTAxMX0.Onx46Jcc6zhp3hqc4uA8A_OvEeMJr_nQLom_Lz7p-II
+Authorization: Bearer <accessToken>
 
 
 ### Refresh access token
@@ -39,7 +39,7 @@ POST {{baseUrl}}/auth/refresh-token
 Content-Type: application/json
 
 {
-  "refreshToken": "e9136088-cd23-4174-9eea-45841fc593a9"
+  "refreshToken": "<refreshToken>"
 }
 
 ### Logout
@@ -47,23 +47,27 @@ POST {{baseUrl}}/auth/logout
 Content-Type: application/json
 
 {
-  "refreshToken": "47294aa3-4590-4a79-ab57-42b4889ddd18"
+  "refreshToken": "<refreshToken>"
 }
 
 ### Get all users
 GET {{baseUrl}}/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZjJhMTAyNGM3Nzc3YjA1ZTkzMTMiLCJlbWFpbCI6Im9mZWtAdGVzdC5jb20iLCJpYXQiOjE3Njk4MDYxNjAsImV4cCI6MTc2OTgwNzA2MH0.57EFTeiNogt5J_DB1P3V7oZTrdhsj56ibHgryb0m-tM
+Authorization: Bearer <accessToken>
 
 ### Get user by id
 GET {{baseUrl}}/users/697cf2a1024c7777b05e9313
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZjJhMTAyNGM3Nzc3YjA1ZTkzMTMiLCJlbWFpbCI6Im9mZWtAdGVzdC5jb20iLCJpYXQiOjE3Njk4MDYxNjAsImV4cCI6MTc2OTgwNzA2MH0.57EFTeiNogt5J_DB1P3V7oZTrdhsj56ibHgryb0m-tM
+Authorization: Bearer <accessToken>
 
 ### Update user (self)
 PUT {{baseUrl}}/users/697cf2a1024c7777b05e9313
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTdjZjJhMTAyNGM3Nzc3YjA1ZTkzMTMiLCJlbWFpbCI6Im9mZWtAdGVzdC5jb20iLCJpYXQiOjE3Njk4MDczMDYsImV4cCI6MTc2OTgwODIwNn0.QPGMKJ-SzUgmb5nfkN_1VvU2uSL2s6N7AkHldnfwp3c
+Authorization: Bearer <accessToken>
 Content-Type: application/json
 
 {
-  "username": "ofek_updated",
-  "email": "ofek_updated@test.com"
+  "username": "ofek_new",
+  "email": "ofek_new@test.com"
 }
+
+### Delete user (self)
+DELETE {{baseUrl}}/users/<userId>
+Authorization: Bearer <accessToken>
