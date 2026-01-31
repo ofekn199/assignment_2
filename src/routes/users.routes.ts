@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers, getUserById , updateUser } from "../controllers/users.controller";
+import { getAllUsers, getUserById , updateUser, deleteUser } from "../controllers/users.controller";
 import { authenticate } from "../middlewares/auth.middleware";
 
 const router = Router();
@@ -12,6 +12,9 @@ router.get("/:id", authenticate, getUserById);
 
 // Update user by id
 router.put("/:id", authenticate, updateUser);
+
+// Delete user
+router.delete("/:id", authenticate, deleteUser);
 
 export default router;
 
